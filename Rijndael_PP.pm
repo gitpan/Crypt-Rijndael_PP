@@ -1,5 +1,5 @@
 #!/usr/bin/perl -w
-# $Id: Rijndael_PP.pm,v 1.17 2001/08/13 20:20:25 lackas Exp $
+# $Id: Rijndael_PP.pm,v 1.20 2001/08/16 08:55:16 lackas Exp $
 package Crypt::Rijndael_PP;
 
 require 5.004;
@@ -11,7 +11,7 @@ use vars qw'$VERSION @EXPORT @EXPORT_OK %EXPORT_TAGS @ISA';
 require Exporter;
 
 @ISA = 'Exporter';
-$VERSION = 0.03;
+$VERSION = 0.04;
 @EXPORT_OK = qw(
 	blockDecrypt blockEncrypt blockEncryptRound blockDecryptRound
 	cipherUpdateRounds cipherInit makeKey
@@ -2662,6 +2662,7 @@ modify it under the same terms as Perl itself.
 The original algorithm was developed by Vincent Rijmen and Joan Daemen.
 
 This release was made by Christian Lackas <delta@lackas.net>.
-http://www.lackas.net/
+http://www.lackas.net/. It is based on the reference implementation
+for the AES contest. At present I am working on a faster version.
 
 =cut

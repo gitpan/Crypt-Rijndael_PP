@@ -7,6 +7,15 @@ use Crypt::Rijndael_PP;
 
 print "1..101\n";
 
+$|++;
+
+if ($@) {
+	print "ok # skipped in absence of Crypt:Rijndael\n" for 1..101;
+	exit 0;
+} else {
+	print "ok 1\n";
+}
+
 my %MODE = (
 	ECB => {
 		c_xs => &Crypt::Rijndael::MODE_ECB,
@@ -17,16 +26,6 @@ my %MODE = (
 		c_pl => Crypt::Rijndael_PP::MODE_CBC
 	}
 );
-
-$|++;
-
-if ($@) {
-	print "ok # skipped in absence of Crypt:Rijndael\n";
-	exit 0;
-} else {
-	print "ok 1\n";
-}
-
 
 my $mode = 'ECB';
 my $keysize = 256;

@@ -5,7 +5,6 @@ Rijndael_PP.pm
 TODO
 comp.pl
 README
-t
 t/00base.t
 t/01re_all_knb.t
 t/02rnd_hin_u_her.t

@@ -1,5 +1,11 @@
 Revision history for Perl extension Crypt::Rijndael_PP.
 
+0.04  Thu Aug 16 10:54:01 2001
+    - fixed some bugs in the test suite (if Crypt::Rijndael, or Crypt::CBC are not
+	  available)
+	- added a new CBC Test
+	- removed "t" from MANIFEST
+
 0.03  Mit Aug 15 12:41:36 2001
     - added test suite (updated MANIFEST)
 	
