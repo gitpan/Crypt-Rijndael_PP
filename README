@@ -102,6 +102,5 @@ AUTHORS
     The original algorithm was developed by Vincent Rijmen and Joan Daemen.
 
     This release was made by Christian Lackas <delta@lackas.net>.
-    http://www.lackas.net/. It is based on the reference implementation for
-    the AES contest. At present I am working on a faster version.
+    http://www.lackas.net/
 
