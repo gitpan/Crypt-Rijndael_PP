@@ -29,16 +29,16 @@ DESCRIPTION
     This modules shares the OO style interface with "Crypt::Rijndael" from
     Rafael R. Sevilla.
 
-        Supported modes: Electronic CodeBook (MODE_ECB) and Cipher Block
+    *   Supported modes: Electronic CodeBook (MODE_ECB) and Cipher Block
         Chaining (MODE_CBC). Please use "Crypt::CBC" for CBC-Mode, as my CBC
         is not compatible with neither "Crypt::CBC" nor "Crypt::Rijndael"
         and it is subject to change in the near future. When using
         "Crypt::CBC" this module is 100% compatible to "Crypt::Rijndael" and
         you can decrypt and encrypt your data with both modules!
 
-        Supported keysizes: 128, 192 and 256 (default)
+    *   Supported keysizes: 128, 192 and 256 (default)
 
-        Supported blocksizes: 128 (default), 192 and 256
+    *   Supported blocksizes: 128 (default), 192 and 256
 
     If the size of the key does not match the given keysize then the key is
     padded with "0" (hex) or truncated to the right size.
@@ -85,11 +85,11 @@ LIMITATIONS
     to use "Crypt::CBC" for this mode anyway.
 
 SEE ALSO
-    the Crypt::Rijndael manpage
+    Crypt::Rijndael
 
-    the Crypt::CBC manpage
+    Crypt::CBC
 
-    http://csrc.nist.gov/encryption/aes/
+    <http://csrc.nist.gov/encryption/aes/>
 
 COPYRIGHT
     This library is free software; you can redistribute it and/or modify it

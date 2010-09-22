@@ -13,7 +13,7 @@ for my $a (0..9) {
 	my $c = new Crypt::Rijndael_PP($key, Crypt::Rijndael_PP::MODE_CBC);
 	for (0..9) {
 		my $x = $a*10 + $_ + 1;
-		my $data = gen(256 * int(rand(16)+1));
+		my $data = gen($Crypt::Rijndael_PP::DEFAULT_BLOCKSIZE * int(rand(16)+1));
 		my $cipher = $c->encrypt($data);
 		my $plain = $c->decrypt($cipher);
 		print $plain eq $data ? "ok $x\n" : "not ok $x\n";

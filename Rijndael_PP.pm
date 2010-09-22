@@ -1,5 +1,5 @@
 #!/usr/bin/perl -w
-# $Id: Rijndael_PP.pm,v 1.20 2001/08/16 08:55:16 lackas Exp $
+# $Id: Rijndael_PP.pm,v 1.21 2010/09/22 13:31:36 lackas Exp $
 package Crypt::Rijndael_PP;
 
 require 5.004;
@@ -11,7 +11,7 @@ use vars qw'$VERSION @EXPORT @EXPORT_OK %EXPORT_TAGS @ISA';
 require Exporter;
 
 @ISA = 'Exporter';
-$VERSION = 0.04;
+$VERSION = 0.05;
 @EXPORT_OK = qw(
 	blockDecrypt blockEncrypt blockEncryptRound blockDecryptRound
 	cipherUpdateRounds cipherInit makeKey
@@ -2336,22 +2336,28 @@ sub cipherUpdateRounds($$$$$$) {
 # objektinterface
 #
 
-sub DEFAULT_BLOCKSIZE() { 128 }
-sub DEFAULT_KEYSIZE() { 256 }
+use vars qw'$DEFAULT_BLOCKSIZE $DEFAULT_KEYSIZE';
+# sub DEFAULT_BLOCKSIZE() { 128 }
+# sub DEFAULT_KEYSIZE() { 256 }
+$DEFAULT_BLOCKSIZE = 128;
+$DEFAULT_KEYSIZE = 256;
 
 sub new {
 	my ($class,$key,$mode) = @_;
 
- 	my $blocksize = DEFAULT_BLOCKSIZE; # FIXME konfigurierbar
-	my $keysize = DEFAULT_KEYSIZE;
+ 	my $blocksize = $DEFAULT_BLOCKSIZE; 
+	my $keysize = $DEFAULT_KEYSIZE;
 	my $ENkeyInst = { blockLen => $blocksize };
 	my $DEkeyInst = { blockLen => $blocksize };
 	$mode = MODE_ECB unless defined $mode;
 	
-	# FIXME check keylength
-
-	# FIXME, compatibility mode for Crypt::Rijndael
+	# compatibility mode for Crypt::Rijndael
 	$key = join '', unpack 'H*', $key;
+
+	if (length($key) * 4 != $keysize) {
+		warn __PACKAGE__, ": set keysize to ", length($key)*4, ".\n";
+		$keysize = length($key) * 4;
+	}
 
 	eval { makeKey($ENkeyInst, DIR_ENCRYPT, $keysize, $key) };
 	die $@ if $@;
@@ -2520,7 +2526,7 @@ sub keysize {
 	if (defined $self and ref $self and defined $self->{keysize}) {
 		return $self->{keysize}/8
 	}
-	return DEFAULT_KEYSIZE/8
+	return $DEFAULT_KEYSIZE/8
 }
 
 # return blocksize in bytes
@@ -2529,7 +2535,7 @@ sub blocksize {
 	if (defined $self and ref $self and defined $self->{blocksize}) {
 		return $self->{blocksize}/8
 	}
-	return DEFAULT_BLOCKSIZE/8
+	return $DEFAULT_BLOCKSIZE/8
 }
 
 1; # make require happy :-)
